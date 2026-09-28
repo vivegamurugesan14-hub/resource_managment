@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Supply Management</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+
+</head>
+
+<body>
+
+
+    <nav class="navbar">
+
+        <div class="nav-container">
+
+            <a href="../index.html" class="logo">
+                Relief Camp Management
+            </a>
+
+            <div class="nav-links">
+
+                <a href="../index.html">
+                    Home
+                </a>
+
+                <a href="camps.html">
+                    Camps
+                </a>
+
+                <a href="family.html">
+                    Families
+                </a>
+
+                <a href="supplies.html" class="active">
+                    Supplies
+                </a>
+
+                <a href="distribution.html">
+                    Distribution
+                </a>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+
+    <main class="page-container">
+
+        <a href="../index.html" class="back-link">
+            ← Back to Dashboard
+        </a>
+
+
+        <h1 class="page-title">
+            Supply Management
+        </h1>
+
+
+        <div class="form-card">
+
+            <h2>Add / Update Supply</h2>
+
+            <form id="supplyForm">
+
+                <input type="hidden" id="supplyId">
+
+
+                <div class="form-group">
+
+                    <label>
+                        Item Name
+                    </label>
+
+                    <input type="text"
+                           id="itemName"
+                           required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Quantity
+                    </label>
+
+                    <input type="number"
+                           id="quantity"
+                           min="1"
+                           required>
+
+                </div>
+
+
+                <button type="submit"
+                        class="button primary-button">
+
+                    Save Supply
+
+                </button>
+
+
+                <button type="button"
+                        class="button secondary-button"
+                        onclick="clearForm()">
+
+                    Clear
+
+                </button>
+
+
+                <p id="message"
+                   class="message">
+                </p>
+
+            </form>
+
+        </div>
+
+
+        <div class="table-card">
+
+            <h2>Supply List</h2>
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>ID</th>
+
+                        <th>Item Name</th>
+
+                        <th>Quantity</th>
+
+                        <th>Actions</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="supplyTableBody">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </main>
+
+
+    <script src="../js/supply.js"></script>
+
+</body>
+
+</html>

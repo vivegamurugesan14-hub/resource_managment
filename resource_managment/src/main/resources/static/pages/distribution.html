@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Supply Distribution</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+
+</head>
+
+<body>
+
+
+    <nav class="navbar">
+
+        <div class="nav-container">
+
+            <a href="../index.html" class="logo">
+                Relief Camp Management
+            </a>
+
+            <div class="nav-links">
+
+                <a href="../index.html">
+                    Home
+                </a>
+
+                <a href="camps.html">
+                    Camps
+                </a>
+
+                <a href="family.html">
+                    Families
+                </a>
+
+                <a href="supplies.html">
+                    Supplies
+                </a>
+
+                <a href="distribution.html" class="active">
+                    Distribution
+                </a>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+
+    <main class="page-container">
+
+        <a href="../index.html" class="back-link">
+            ← Back to Dashboard
+        </a>
+
+
+        <h1 class="page-title">
+            Supply Distribution
+        </h1>
+
+
+        <!-- Distribution Form -->
+
+        <div class="form-card">
+
+            <h2>Distribute Supply</h2>
+
+            <form id="distributionForm">
+
+
+                <div class="form-group">
+
+                    <label>
+                        Camp ID
+                    </label>
+
+                    <input type="number"
+                           id="distributionCampId"
+                           min="1"
+                           required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Family ID
+                    </label>
+
+                    <input type="number"
+                           id="distributionFamilyId"
+                           min="1"
+                           required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Supply ID
+                    </label>
+
+                    <input type="number"
+                           id="distributionSupplyId"
+                           min="1"
+                           required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Quantity
+                    </label>
+
+                    <input type="number"
+                           id="distributionQuantity"
+                           min="1"
+                           required>
+
+                </div>
+
+
+                <button type="submit"
+                        class="button primary-button">
+
+                    Distribute Supply
+
+                </button>
+
+
+                <button type="button"
+                        class="button secondary-button"
+                        onclick="clearForm()">
+
+                    Clear
+
+                </button>
+
+
+                <p id="message"
+                   class="message">
+                </p>
+
+            </form>
+
+        </div>
+
+
+        <!-- Distribution History -->
+
+        <div class="table-card">
+
+            <h2>
+                Distribution History
+            </h2>
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>ID</th>
+
+                        <th>Camp ID</th>
+
+                        <th>Family ID</th>
+
+                        <th>Supply ID</th>
+
+                        <th>Quantity</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="distributionTableBody">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </main>
+
+
+    <script src="../js/distribution.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Family Management</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+
+</head>
+
+<body>
+
+
+    <nav class="navbar">
+
+        <div class="nav-container">
+
+            <a href="../index.html" class="logo">
+                Relief Camp Management
+            </a>
+
+            <div class="nav-links">
+
+                <a href="../index.html">
+                    Home
+                </a>
+
+                <a href="camps.html">
+                    Camps
+                </a>
+
+                <a href="familiy.html" class="active">
+                    Families
+                </a>
+
+                <a href="supplies.html">
+                    Supplies
+                </a>
+
+                <a href="distribution.html">
+                    Distribution
+                </a>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+
+    <main class="page-container">
+
+        <a href="../index.html" class="back-link">
+            ← Back to Dashboard
+        </a>
+
+
+        <h1 class="page-title">
+            Family Management
+        </h1>
+
+
+        <div class="form-card">
+
+            <h2>Add / Update Family</h2>
+
+            <form id="familyForm">
+
+                <input type="hidden" id="familyId">
+
+
+                <div class="form-group">
+
+                    <label>
+                        Family Name
+                    </label>
+
+                    <input type="text"
+                           id="familyName"
+                           required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Headcount
+                    </label>
+
+                    <input type="number"
+                           id="headcount"
+                           min="1"
+                           required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Camp ID
+                    </label>
+
+                    <input type="number"
+                           id="campId"
+                           min="1"
+                           required>
+
+                </div>
+
+
+                <button type="submit"
+                        class="button primary-button">
+
+                    Save Family
+
+                </button>
+
+
+                <button type="button"
+                        class="button secondary-button"
+                        onclick="clearForm()">
+
+                    Clear
+
+                </button>
+
+
+                <p id="message"
+                   class="message">
+                </p>
+
+            </form>
+
+        </div>
+
+
+        <div class="table-card">
+
+            <h2>Family List</h2>
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>ID</th>
+
+                        <th>Family Name</th>
+
+                        <th>Headcount</th>
+
+                        <th>Camp ID</th>
+
+                        <th>Actions</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="familyTableBody">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </main>
+
+
+    <script src="../js/family.js"></script>
+
+</body>
+
+</html>

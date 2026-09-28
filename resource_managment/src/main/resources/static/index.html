@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Relief Camp Management System</title>
+
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body>
+    <!-- Navigation Bar -->
+
+    <nav class="navbar">
+      <div class="nav-container">
+        <a href="index.html" class="logo"> Relief Camp Management </a>
+
+        <div class="nav-links">
+          <a href="index.html" class="active"> Home </a>
+
+          <a href="pages/camps.html"> Camps </a>
+
+          <a href="pages/family.html"> Families </a>
+
+          <a href="pages/supplies.html"> Supplies </a>
+
+          <a href="pages/distribution.html"> Distribution </a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Home Page -->
+
+    <main class="page-container">
+      <div class="home-card">
+        <div class="icon">⛺</div>
+
+        <h1>Relief Camp Management System</h1>
+
+        <p class="subtitle">Manage disaster relief camp resources easily</p>
+
+        <p class="description">
+          Manage camps, families, supplies and supply distributions using a
+          simple management system.
+        </p>
+
+        <!-- Main Buttons -->
+
+        <div class="menu">
+          <a href="pages/camps.html" class="button primary-button">
+            Manage Camps
+          </a>
+
+          <a href="pages/family.html" class="button secondary-button">
+            Manage Families
+          </a>
+
+          <a href="pages/supplies.html" class="button secondary-button">
+            Manage Supplies
+          </a>
+
+          <a href="pages/distribution.html" class="button secondary-button">
+            Distribution
+          </a>
+        </div>
+      </div>
+
+      <!-- Dashboard Cards -->
+
+      <div class="dashboard">
+        <div class="dashboard-card">
+          <h3>Total Camps</h3>
+
+          <p id="campCount">0</p>
+        </div>
+
+        <div class="dashboard-card">
+          <h3>Total Families</h3>
+
+          <p id="familyCount">0</p>
+        </div>
+
+        <div class="dashboard-card">
+          <h3>Total Supplies</h3>
+
+          <p id="supplyCount">0</p>
+        </div>
+
+        <div class="dashboard-card">
+          <h3>Total Distributions</h3>
+
+          <p id="distributionCount">0</p>
+        </div>
+      </div>
+    </main>
+
+    <script src="js/dashboard.js"></script>
+  </body>
+</html>

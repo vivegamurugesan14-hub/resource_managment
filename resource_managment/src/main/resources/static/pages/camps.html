@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Camp Management</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+
+</head>
+
+<body>
+
+
+    <!-- Navigation Bar -->
+
+    <nav class="navbar">
+
+        <div class="nav-container">
+
+            <a href="../index.html" class="logo">
+                Relief Camp Management
+            </a>
+
+            <div class="nav-links">
+
+                <a href="../index.html">
+                    Home
+                </a>
+
+                <a href="camps.html" class="active">
+                    Camps
+                </a>
+
+                <a href="family.html">
+                    Families
+                </a>
+
+                <a href="supplies.html">
+                    Supplies
+                </a>
+
+                <a href="distribution.html">
+                    Distribution
+                </a>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+
+    <main class="page-container">
+
+        <a href="../index.html" class="back-link">
+            ← Back to Dashboard
+        </a>
+
+
+        <h1 class="page-title">
+            Camp Management
+        </h1>
+
+
+        <!-- Camp Form -->
+
+        <div class="form-card">
+
+            <h2>Add / Update Camp</h2>
+
+            <form id="campForm">
+
+                <input type="hidden" id="campId">
+
+
+                <div class="form-group">
+
+                    <label for="campName">
+                        Camp Name
+                    </label>
+
+                    <input type="text"
+                           id="campName"
+                           required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="location">
+                        Location
+                    </label>
+
+                    <input type="text"
+                           id="location"
+                           required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="capacity">
+                        Capacity
+                    </label>
+
+                    <input type="number"
+                           id="capacity"
+                           min="1"
+                           required>
+
+                </div>
+
+
+                <button type="submit"
+                        class="button primary-button">
+
+                    Save Camp
+
+                </button>
+
+
+                <button type="button"
+                        class="button secondary-button"
+                        onclick="clearForm()">
+
+                    Clear
+
+                </button>
+
+
+                <p id="message"
+                   class="message">
+                </p>
+
+            </form>
+
+        </div>
+
+
+        <!-- Camp Table -->
+
+        <div class="table-card">
+
+            <h2>Camp List</h2>
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>ID</th>
+
+                        <th>Camp Name</th>
+
+                        <th>Location</th>
+
+                        <th>Capacity</th>
+
+                        <th>Actions</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="campTableBody">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </main>
+
+
+    <script src="../js/camp.js"></script>
+
+</body>
+
+</html>
