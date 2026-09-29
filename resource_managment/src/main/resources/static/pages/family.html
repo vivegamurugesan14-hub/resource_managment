@@ -17,6 +17,10 @@
 <body>
 
 
+    <!-- ============================= -->
+    <!-- NAVIGATION BAR -->
+    <!-- ============================= -->
+
     <nav class="navbar">
 
         <div class="nav-container">
@@ -24,6 +28,7 @@
             <a href="../index.html" class="logo">
                 Relief Camp Management
             </a>
+
 
             <div class="nav-links">
 
@@ -35,7 +40,7 @@
                     Camps
                 </a>
 
-                <a href="familiy.html" class="active">
+                <a href="family.html" class="active">
                     Families
                 </a>
 
@@ -54,97 +59,142 @@
     </nav>
 
 
+    <!-- ============================= -->
+    <!-- MAIN CONTENT -->
+    <!-- ============================= -->
+
     <main class="page-container">
+
+
+        <!-- Back to Dashboard -->
 
         <a href="../index.html" class="back-link">
             ← Back to Dashboard
         </a>
 
 
+        <!-- Page Title -->
+
         <h1 class="page-title">
             Family Management
         </h1>
 
 
+        <!-- ============================= -->
+        <!-- FAMILY FORM -->
+        <!-- ============================= -->
+
         <div class="form-card">
 
             <h2>Add / Update Family</h2>
 
+
             <form id="familyForm">
+
+
+                <!-- Hidden Family ID -->
 
                 <input type="hidden" id="familyId">
 
 
+                <!-- Family Name -->
+
                 <div class="form-group">
 
-                    <label>
+                    <label for="familyName">
                         Family Name
                     </label>
 
-                    <input type="text"
-                           id="familyName"
-                           required>
+                    <input
+                        type="text"
+                        id="familyName"
+                        required
+                    >
 
                 </div>
 
 
+                <!-- Headcount -->
+
                 <div class="form-group">
 
-                    <label>
+                    <label for="headcount">
                         Headcount
                     </label>
 
-                    <input type="number"
-                           id="headcount"
-                           min="1"
-                           required>
+                    <input
+                        type="number"
+                        id="headcount"
+                        min="1"
+                        required
+                    >
 
                 </div>
 
+
+                <!-- Camp Name -->
 
                 <div class="form-group">
 
-                    <label>
-                        Camp ID
+                    <label for="campId">
+                        Camp Name
                     </label>
 
-                    <input type="number"
-                           id="campId"
-                           min="1"
-                           required>
+                    <select id="campId" required>
+
+                        <option value="">
+                            Select Camp
+                        </option>
+
+                    </select>
 
                 </div>
 
 
-                <button type="submit"
-                        class="button primary-button">
+                <!-- Save Button -->
+
+                <button
+                    type="submit"
+                    class="button primary-button">
 
                     Save Family
 
                 </button>
 
 
-                <button type="button"
-                        class="button secondary-button"
-                        onclick="clearForm()">
+                <!-- Clear Button -->
+
+                <button
+                    type="button"
+                    class="button secondary-button"
+                    onclick="clearForm()">
 
                     Clear
 
                 </button>
 
 
-                <p id="message"
-                   class="message">
+                <!-- Message -->
+
+                <p
+                    id="message"
+                    class="message">
                 </p>
+
 
             </form>
 
         </div>
 
 
+        <!-- ============================= -->
+        <!-- FAMILY TABLE -->
+        <!-- ============================= -->
+
         <div class="table-card">
 
             <h2>Family List</h2>
+
 
             <table>
 
@@ -158,7 +208,7 @@
 
                         <th>Headcount</th>
 
-                        <th>Camp ID</th>
+                        <th>Camp Name</th>
 
                         <th>Actions</th>
 
@@ -175,10 +225,16 @@
 
         </div>
 
+
     </main>
 
 
+    <!-- ============================= -->
+    <!-- JAVASCRIPT -->
+    <!-- ============================= -->
+
     <script src="../js/family.js"></script>
+
 
 </body>
 

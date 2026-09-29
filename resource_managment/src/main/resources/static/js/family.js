@@ -2,165 +2,277 @@ const API_BASE_URL = "http://localhost:8080";
 
 
 // ========================================
-// CREATE / UPDATE FAMILY
+// STORE CAMP DATA
 // ========================================
 
-const familyForm = document.getElementById("familyForm");
-
-if (familyForm) {
-
-    familyForm.addEventListener("submit", function (event) {
-
-        event.preventDefault();
-
-        const id = document.getElementById("familyId").value;
-
-        const familyName =
-            document.getElementById("familyName").value.trim();
-
-        const headcount =
-            document.getElementById("headcount").value;
-
-        const campId =
-            document.getElementById("campId").value;
-
-        const message =
-            document.getElementById("message");
-
-        message.innerText = "";
+let camps = [];
 
 
-        // Validate family name
-        if (familyName === "") {
+// ========================================
+// LOAD CAMPS
+// ========================================
 
-            message.innerText =
-                "Family name is required.";
+function loadCamps() {
 
-            return;
-        }
+    const campDropdown =
+        document.getElementById("campId");
 
+    if (!campDropdown) {
+        return Promise.resolve();
+    }
 
-        // Validate headcount
-        if (headcount === "" || Number(headcount) <= 0) {
+    return fetch(`${API_BASE_URL}/camps`)
 
-            message.innerText =
-                "Headcount must be greater than 0.";
-
-            return;
-        }
-
-
-        // Validate camp ID
-        if (campId === "" || Number(campId) <= 0) {
-
-            message.innerText =
-                "Camp ID is required.";
-
-            return;
-        }
-
-
-        // Create family object
-        const family = {
-
-            familyName: familyName,
-
-            headcount: Number(headcount),
-
-            campId: Number(campId)
-
-        };
-
-
-        // Default: CREATE
-        let url =
-            `${API_BASE_URL}/families`;
-
-        let method = "POST";
-
-
-        // If ID exists, UPDATE
-        if (id !== "") {
-
-            url =
-                `${API_BASE_URL}/families/${id}`;
-
-            method = "PUT";
-        }
-
-
-        // Send request to Spring Boot
-        fetch(url, {
-
-            method: method,
-
-            headers: {
-
-                "Content-Type":
-                    "application/json"
-
-            },
-
-            body: JSON.stringify(family)
-
-        })
-
-
-        // Read response
-        .then(async (response) => {
+        .then((response) => {
 
             if (!response.ok) {
 
-                const errorMessage =
-                    await response.text();
+                throw new Error(
+                    "Failed to load camps"
+                );
 
-                throw new Error(errorMessage);
             }
 
             return response.json();
 
         })
 
-
-        // Success
         .then((data) => {
 
-            if (id === "") {
+            camps = data;
+
+            campDropdown.innerHTML = `
+                <option value="">
+                    Select Camp
+                </option>
+            `;
+
+
+            camps.forEach((camp) => {
+
+                const option =
+                    document.createElement("option");
+
+                option.value = camp.id;
+
+                option.textContent =
+                    camp.campName;
+
+                campDropdown.appendChild(option);
+
+            });
+
+        })
+
+        .catch((error) => {
+
+            console.error(
+                "Error loading camps:",
+                error
+            );
+
+        });
+
+}
+
+
+// ========================================
+// CREATE / UPDATE FAMILY
+// ========================================
+
+const familyForm =
+    document.getElementById("familyForm");
+
+
+if (familyForm) {
+
+    familyForm.addEventListener(
+        "submit",
+        function (event) {
+
+            event.preventDefault();
+
+
+            const id =
+                document.getElementById("familyId").value;
+
+
+            const familyName =
+                document
+                    .getElementById("familyName")
+                    .value
+                    .trim();
+
+
+            const headcount =
+                document
+                    .getElementById("headcount")
+                    .value;
+
+
+            const campId =
+                document
+                    .getElementById("campId")
+                    .value;
+
+
+            const message =
+                document.getElementById("message");
+
+
+            message.innerText = "";
+
+
+            // Validate family name
+
+            if (familyName === "") {
 
                 message.innerText =
-                    "Family created successfully.";
+                    "Family name is required.";
 
-            } else {
+                return;
+            }
+
+
+            // Validate headcount
+
+            if (
+                headcount === "" ||
+                Number(headcount) <= 0
+            ) {
 
                 message.innerText =
-                    "Family updated successfully.";
+                    "Headcount must be greater than 0.";
+
+                return;
+            }
+
+
+            // Validate camp selection
+
+            if (campId === "") {
+
+                message.innerText =
+                    "Please select a camp.";
+
+                return;
+            }
+
+
+            // Create family object
+
+            const family = {
+
+                familyName: familyName,
+
+                headcount: Number(headcount),
+
+                campId: Number(campId)
+
+            };
+
+
+            // Default: CREATE
+
+            let url =
+                `${API_BASE_URL}/families`;
+
+            let method = "POST";
+
+
+            // If ID exists: UPDATE
+
+            if (id !== "") {
+
+                url =
+                    `${API_BASE_URL}/families/${id}`;
+
+                method = "PUT";
 
             }
 
 
-            // Clear form
-            familyForm.reset();
+            // Send request to Spring Boot
 
-            document.getElementById("familyId").value = "";
+            fetch(url, {
+
+                method: method,
+
+                headers: {
+
+                    "Content-Type":
+                        "application/json"
+
+                },
+
+                body:
+                    JSON.stringify(family)
+
+            })
 
 
-            // Reload family list
-            loadFamilies();
+                // Read response
 
-        })
+                .then(async (response) => {
+
+                    if (!response.ok) {
+
+                        const errorMessage =
+                            await response.text();
+
+                        throw new Error(
+                            errorMessage
+                        );
+
+                    }
+
+                    return response.json();
+
+                })
 
 
-        // Error
-        .catch((error) => {
+                // Success
 
-            console.error(error);
+                .then((data) => {
 
-            message.innerText =
-                error.message;
+                    if (id === "") {
+
+                        message.innerText =
+                            "Family created successfully.";
+
+                    } else {
+
+                        message.innerText =
+                            "Family updated successfully.";
+
+                    }
+
+
+                    familyForm.reset();
+
+
+                    document
+                        .getElementById("familyId")
+                        .value = "";
+
+
+                    loadFamilies();
+
+                })
+
+
+                // Error
+
+                .catch((error) => {
+
+                    console.error(error);
+
+                    message.innerText =
+                        error.message;
+
+                });
 
         });
-
-    });
 
 }
 
@@ -172,7 +284,9 @@ if (familyForm) {
 function loadFamilies() {
 
     const familyTableBody =
-        document.getElementById("familyTableBody");
+        document.getElementById(
+            "familyTableBody"
+        );
 
 
     if (!familyTableBody) {
@@ -205,6 +319,22 @@ function loadFamilies() {
 
             families.forEach((family) => {
 
+
+                // Find camp using camp ID
+
+                const camp =
+                    camps.find(
+                        (c) =>
+                            c.id === family.campId
+                    );
+
+
+                const campName =
+                    camp
+                        ? camp.campName
+                        : "Unknown Camp";
+
+
                 const row =
                     document.createElement("tr");
 
@@ -217,7 +347,7 @@ function loadFamilies() {
 
                     <td>${family.headcount}</td>
 
-                    <td>${family.campId}</td>
+                    <td>${campName}</td>
 
                     <td>
 
@@ -280,11 +410,12 @@ function deleteFamily(id) {
     }
 
 
-    fetch(`${API_BASE_URL}/families/${id}`, {
-
-        method: "DELETE"
-
-    })
+    fetch(
+        `${API_BASE_URL}/families/${id}`,
+        {
+            method: "DELETE"
+        }
+    )
 
 
         .then((response) => {
@@ -328,7 +459,9 @@ function deleteFamily(id) {
 
 function editFamily(id) {
 
-    fetch(`${API_BASE_URL}/families/${id}`)
+    fetch(
+        `${API_BASE_URL}/families/${id}`
+    )
 
         .then((response) => {
 
@@ -347,20 +480,24 @@ function editFamily(id) {
 
         .then((family) => {
 
-            document.getElementById("familyId").value =
-                family.id;
+            document
+                .getElementById("familyId")
+                .value = family.id;
 
 
-            document.getElementById("familyName").value =
-                family.familyName;
+            document
+                .getElementById("familyName")
+                .value = family.familyName;
 
 
-            document.getElementById("headcount").value =
-                family.headcount;
+            document
+                .getElementById("headcount")
+                .value = family.headcount;
 
 
-            document.getElementById("campId").value =
-                family.campId;
+            document
+                .getElementById("campId")
+                .value = family.campId;
 
         })
 
@@ -400,7 +537,11 @@ function clearForm() {
 
 
 // ========================================
-// LOAD FAMILIES WHEN PAGE OPENS
+// LOAD DATA WHEN PAGE OPENS
 // ========================================
 
-loadFamilies();
+loadCamps().then(() => {
+
+    loadFamilies();
+
+});

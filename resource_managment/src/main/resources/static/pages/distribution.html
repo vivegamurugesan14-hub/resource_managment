@@ -17,6 +17,10 @@
 <body>
 
 
+    <!-- ============================= -->
+    <!-- NAVIGATION BAR -->
+    <!-- ============================= -->
+
     <nav class="navbar">
 
         <div class="nav-container">
@@ -24,6 +28,7 @@
             <a href="../index.html" class="logo">
                 Relief Camp Management
             </a>
+
 
             <div class="nav-links">
 
@@ -54,7 +59,12 @@
     </nav>
 
 
+    <!-- ============================= -->
+    <!-- MAIN CONTENT -->
+    <!-- ============================= -->
+
     <main class="page-container">
+
 
         <a href="../index.html" class="back-link">
             ← Back to Dashboard
@@ -66,104 +76,140 @@
         </h1>
 
 
-        <!-- Distribution Form -->
+        <!-- ============================= -->
+        <!-- DISTRIBUTION FORM -->
+        <!-- ============================= -->
 
         <div class="form-card">
 
             <h2>Distribute Supply</h2>
 
+
             <form id="distributionForm">
 
 
+                <!-- Camp -->
+
                 <div class="form-group">
 
-                    <label>
-                        Camp ID
+                    <label for="distributionCampId">
+                        Camp Name
                     </label>
 
-                    <input type="number"
-                           id="distributionCampId"
-                           min="1"
-                           required>
+                    <select
+                        id="distributionCampId"
+                        required>
+
+                        <option value="">
+                            Select Camp
+                        </option>
+
+                    </select>
 
                 </div>
 
 
+                <!-- Family -->
+
                 <div class="form-group">
 
-                    <label>
-                        Family ID
+                    <label for="distributionFamilyId">
+                        Family Name
                     </label>
 
-                    <input type="number"
-                           id="distributionFamilyId"
-                           min="1"
-                           required>
+                    <select
+                        id="distributionFamilyId"
+                        required>
+
+                        <option value="">
+                            Select Family
+                        </option>
+
+                    </select>
 
                 </div>
 
 
+                <!-- Supply -->
+
                 <div class="form-group">
 
-                    <label>
-                        Supply ID
+                    <label for="distributionSupplyId">
+                        Supply Item
                     </label>
 
-                    <input type="number"
-                           id="distributionSupplyId"
-                           min="1"
-                           required>
+                    <select
+                        id="distributionSupplyId"
+                        required>
+
+                        <option value="">
+                            Select Supply
+                        </option>
+
+                    </select>
 
                 </div>
 
 
+                <!-- Quantity -->
+
                 <div class="form-group">
 
-                    <label>
+                    <label for="distributionQuantity">
                         Quantity
                     </label>
 
-                    <input type="number"
-                           id="distributionQuantity"
-                           min="1"
-                           required>
+                    <input
+                        type="number"
+                        id="distributionQuantity"
+                        min="1"
+                        required>
 
                 </div>
 
 
-                <button type="submit"
-                        class="button primary-button">
+                <!-- Buttons -->
+
+                <button
+                    type="submit"
+                    class="button primary-button">
 
                     Distribute Supply
 
                 </button>
 
 
-                <button type="button"
-                        class="button secondary-button"
-                        onclick="clearForm()">
+                <button
+                    type="button"
+                    class="button secondary-button"
+                    onclick="clearDistributionForm()">
 
                     Clear
 
                 </button>
 
 
-                <p id="message"
-                   class="message">
+                <!-- Message -->
+
+                <p
+                    id="message"
+                    class="message">
                 </p>
+
 
             </form>
 
         </div>
 
 
-        <!-- Distribution History -->
+        <!-- ============================= -->
+        <!-- DISTRIBUTION HISTORY -->
+        <!-- ============================= -->
 
         <div class="table-card">
 
-            <h2>
-                Distribution History
-            </h2>
+            <h2>Distribution History</h2>
+
 
             <table>
 
@@ -173,11 +219,11 @@
 
                         <th>ID</th>
 
-                        <th>Camp ID</th>
+                        <th>Camp Name</th>
 
-                        <th>Family ID</th>
+                        <th>Family Name</th>
 
-                        <th>Supply ID</th>
+                        <th>Supply Item</th>
 
                         <th>Quantity</th>
 
@@ -193,6 +239,7 @@
             </table>
 
         </div>
+
 
     </main>
 

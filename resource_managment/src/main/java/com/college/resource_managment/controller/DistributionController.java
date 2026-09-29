@@ -2,6 +2,7 @@ package com.college.resource_managment.controller;
 
 import com.college.resource_managment.entity.Distribution;
 import com.college.resource_managment.service.DistributionService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,29 +15,53 @@ public class DistributionController {
 
     private final DistributionService distributionService;
 
-    public DistributionController(DistributionService distributionService) {
-        this.distributionService = distributionService;
+
+    public DistributionController(
+            DistributionService distributionService) {
+
+        this.distributionService =
+                distributionService;
     }
 
-    // Create Distribution
+
     @PostMapping
-    public Distribution createDistribution(
+    public ResponseEntity<?> createDistribution(
             @RequestBody Distribution distribution) {
 
-        return distributionService.createDistribution(distribution);
+        try {
+
+            return ResponseEntity.ok(
+                    distributionService
+                            .createDistribution(distribution)
+            );
+
+        } catch (RuntimeException e) {
+
+            return ResponseEntity
+                    .badRequest()
+                    .body(e.getMessage());
+
+        }
+
     }
 
-    // Get All Distributions
+
     @GetMapping
     public List<Distribution> getAllDistributions() {
-        return distributionService.getAllDistributions();
+
+        return distributionService
+                .getAllDistributions();
+
     }
 
-    // Get Distribution By ID
+
     @GetMapping("/{id}")
     public Optional<Distribution> getDistributionById(
             @PathVariable Long id) {
 
-        return distributionService.getDistributionById(id);
+        return distributionService
+                .getDistributionById(id);
+
     }
+
 }
